@@ -5,7 +5,7 @@ A
 output1 
 65
 
-input1 2 
+input1
 C
 
 output1 
