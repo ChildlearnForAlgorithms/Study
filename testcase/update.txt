@@ -1,31 +1,37 @@
-problem 1065
-input1
-110
+problem 11654
+input1 
+A
 
-output1
-99
+output1 
+65
 
-input1
-1
+input1 2 
+C
 
-output1
-1
-
-input1
-210
-
-output1
-105
+output1 
+67
 
 input1
-1000
+0
 
-output1
-144
+output1 
+48
+
+input1 
+9
+
+output1 
+57
 
 input1
-500
+a
 
 output1
-119
+97
+
+input1 
+z
+
+output1 
+122
 
