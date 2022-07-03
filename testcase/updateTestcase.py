@@ -38,9 +38,9 @@ def updateFile():
         if problem_number not in testcases.keys():
             testcases[problem_number] = {}
         for line in updateFile:
-            if line.rstrip()[:-1] == "input":
+            if line.rstrip()[:5] == "input" or line[:5] == "예제 입력":
                 mode = True
-            elif line.rstrip()[:-1] == "output":
+            elif line.rstrip()[:6] == "output" or line[:5] == "예제 출력":
                 mode = False
             elif line.rstrip() != "":
                 answer += line
