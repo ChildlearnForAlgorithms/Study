@@ -6,6 +6,7 @@ values=[i for i in s_list.values()]
 values.sort(reverse=True)
 big=values[0]
 result=[i for i,k in s_list.items() if big==k]
+print(result)
 if len(result)!=1:
     print('?')
 else:
