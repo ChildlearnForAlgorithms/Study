@@ -1,20 +1,20 @@
-def max_sum(A):
-    # 최대 구간 합 리턴
-    n = len(A)
-    P = [0 for _ in range(n)]
-    P[0] = A[0]
-    for i in range(1, n):
-        P[i] = P[i - 1] + A[i]
-    max_partial_sum = P[0]
-
-    for b in range(n):
-        for a in range(b):
-            if max_partial_sum < P[b] - P[a]:
-                max_partial_sum = P[b] - P[a]
-            print(f"b {b} ~ a {a}, {max_partial_sum}")
-    return max_partial_sum
-
-
+def max_sum(A, left, right):
+    if left==right:
+        return A[left]
+    mid = (left + right) // 2
+    l=max_sum(A,left,mid)
+    r=max_sum(A,mid+1,right)
+    sum1=0
+    sum2=0
+    l2=-1000
+    r2=-1000
+    for i in range(mid,left-1,-1):
+        sum1+=A[i]
+        l2=max(l2,sum1)
+    for i in range(mid,right+1,1):
+        sum2+=A[i]
+        r2=max(r2,sum2)
+    return max(l,r,l2+r2)
 A = [int(x) for x in input().split()]
-sol = max_sum(A)
+sol = max_sum(A, 0, len(A) - 1)
 print(sol)
