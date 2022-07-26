@@ -1,72 +1,45 @@
-def m_sort(A, first, last):
-    if first >= last:
-        return
-    m1 = (first + last) // 3  # 잘 나눴어여
-    m2 = (first + last) * 2 // 3
-    m_sort(A, first, m1)
-    m_sort(A, m1 + 1, m2)
-    m_sort(A, m2 + 1, last)
+class Heap:
+    def __init__(self, L=[]):
+        self.A=L
+        self.make_heap()
 
-    merge(A, first, m1, m2, last)  # 이러면 가운데가 저장이 안 돼요 ㅎㅅㅎ
-    # [   |   ]
-    # [   |   |   ] 이렇게 합친다고 생각해봐오
+    def __str__(self):
+        return str(self.A)
 
-
-def merge(A, first, m1, m2, last): # 어떤 방식으로 나눠지는 건지 설명해죠
-    i = first
-    j = m1 + 1
-    k = m2 + 1
-    B = []
-    while i <= m1 and j <= m2 and k <= last:
-        if A[i] <= A[j]:
-            if A[i] <= A[k]:
-                B.append(A[i])
-                i += 1
+    def heapify_down(self, k, n):
+        while 2*k+1<n:
+            left,right=2*k+1,2*k+2
+            if left<n and self.A[left]>self.A[k]:
+                m=left
             else:
-                B.append(A[k])
-                k += 1
-        else:
-            if A[j] <= A[k]:
-                B.append(A[j])
-                j += 1
+                m=k
+            if right<n and self.A[right]>self.A[m]:
+                m=right
+            if m!=k:
+                self.A[m],self.A[k]=self.A[k],self.A[m]
+                k=m
             else:
-                B.append(A[k])
-                k += 1
-
-    # while 문이 너무 많아여 위에 적어놓은거 합치는 방식대로 하면 더 쉽게 나올거예여
-    while j <= m2 and k <= last:
-        if A[j] <= A[k]:
-            B.append(A[j])
-        else:
-            B.append(A[k])
-    while i <= m1 and k <= last:
-        if A[i] <= A[k]:
-            B.append(A[i])
-        else:
-            B.append(A[k])
-    while i <= m1 and j <= m2:
-        if A[i] <= A[j]:
-            B.append(A[i])
-        else:
-            B.append(A[j])
-
-    while i <= m1:
-        B.append(A[i])
-    while j <= m2:
-        B.append(A[j])
-    while k <= last:
-        B.append(A[k])
-    for i in range(first, last + 1):
-        A[i] = B[i - first]
+                break
 
 
-def check(A):
-    for i in range(1, len(A)):
-        if A[i - 1] > A[i]:
-            return False
-    return A[0] + A[(len(A) // 2)] + A[-1]
 
 
-A = [int(x) for x in input().split()]
-m_sort(A, 0, len(A) - 1)
-print(check(A))
+    def make_heap(self,):
+        n=len(self.A)
+        for i in range(n-1,-1,-1):
+            self.heapify_down(i,n)
+
+    def heap_sort(self):
+        n=len(L)
+        for i in range(n-1,-1,-1):
+            self.A[0],self.A[i]=self.A[i],self.A[0]
+            n=n-1
+            self.heapify_down(0,n)
+
+
+
+
+L = [int(x) for x in input().split()]
+H = Heap(L)
+H.heap_sort()
+print(H)
