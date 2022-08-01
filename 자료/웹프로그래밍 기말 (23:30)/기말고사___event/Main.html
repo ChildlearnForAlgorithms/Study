@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>final test - event</title>
+		<script>
+			function keyPress(e){
+				if (e.code==="Enter"){
+					var exp = document.getElementById("exp");
+					var res = document.getElementById("res");
+					res.value=eval(exp.value);
+					res.style.backgroundColor=Math.random();
+				}
+			}
+		</script>
+  </head>
+  <body>
+    <h3>final test - calculator 구현</h3>
+    <hr />
+    수식을 입력하고 &lt;Enter&gt;를 입력하세요.
+    <p></p>
+		<form>
+			<label id="exp" onkeypress="keyPress(event)">식<input type="text" value=""></label>
+			<br>
+			<label>값<input id="res" type="text" value=""></label>
+		</form>
+  </body>
+</html>

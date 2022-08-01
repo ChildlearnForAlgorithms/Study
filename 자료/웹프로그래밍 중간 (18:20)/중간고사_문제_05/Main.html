@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>중간고사 5번 문제</title>
+  </head>
+  <body>
+    <h3>자바스크립트 - 코어객체와 배열</h3>
+    <hr />
+    <script>
+			var n = prompt("랜덤한 값 몇개를 만들까요?","");
+			var numArray=new Array();
+			var sum=0;
+			for(var i = 0; i < n;i++){
+				var num = Math.floor(Math.random()*99+1);
+				numArray[i]=num;
+				sum +=num;
+			}
+			document.write("<strong>랜덤하게 생성된 수의 배열</strong><br>");
+			for(var j=0;j<n;j++){
+				document.write("["+j+"]= "+numArray[j]+"<br>");
+			}
+			var average=sum/n;
+			document.write("<hr>");
+			document.write("<strong>sum = "+sum+"</strong><br>");
+			document.write("<strong>average = "+average+"</strong<br>");
+			
+			
+    </script>
+  </body>
+</html>
