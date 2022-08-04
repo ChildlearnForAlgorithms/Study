@@ -1,28 +1,19 @@
-n, m = map(int, input().split())
-answer = [
-    [0] * m
-    for _ in range(n)
-]
+n=int(input())
+grid=[]
+for i in range(n):
+    a=list(map(int,input().split()))
+    grid.append(a)
 
-
-def in_range(x, y):
-    return 0 <= x and x < n and 0 <= y and y < m
-
-
-dxs, dys = [0, 1, 0, -1], [1, 0, -1, 0]
-x, y = 0, 0  # 시작은 (0, 0) 입니다.
-dir_num = 0  # 0: 오른쪽, 1: 아래쪽, 2: 왼쪽, 3: 위쪽
-
-answer[x][y]=1
-
-for i in range(2,n*m+1):
-    nx,ny=x+dxs[dir_num],y+dys[dir_num]
-    if not in_range(nx,ny) or answer[nx][ny]!=0:
-        dir_num=(dir_num+1)%4
-    x,y=x+dxs[dir_num],y+dys[dir_num]
-    answer[x][y]=i
+cnt_lst=[]
 
 for i in range(n):
-    for j in range(m):
-        print(answer[i][j],end=' ')
-    print()
+    for j in range(n):
+        cnt=0
+        for k in range(i,i+3):
+            for m in range(j,j+3):
+                if i+3<=n and j+3<=n and grid[k][m]==1:
+                    print(i,j,k,m)
+                    cnt+=1
+        cnt_lst.append(cnt)
+
+print(max(cnt_lst))
