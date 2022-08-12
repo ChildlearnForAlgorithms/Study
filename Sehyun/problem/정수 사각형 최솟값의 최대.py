@@ -1,0 +1,13 @@
+n=int(input())
+a=[list(map(int,input().split())) for _ in range(n)]
+dp=[[0]*n for _ in range(n)]
+dp[0][0]=a[0][0]
+for i in range(1,n):
+    dp[0][i]=min(dp[0][i-1],a[0][i])
+for i in range(1,n):
+    dp[i][0]=min(dp[i-1][0],a[i][0])
+
+for i in range(1,n):
+    for j in range(1,n):
+        dp[i][j]=min(max(dp[i][j-1],dp[i-1][j]),a[i][j])
+print(dp[n-1][n-1])
