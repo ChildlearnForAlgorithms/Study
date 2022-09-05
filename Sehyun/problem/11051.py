@@ -1,6 +1,6 @@
 import sys
 
-n,k=map(int,sys.stdin.readline().split())
+n,k=map(int,sys.stdin.readline())
 
 dp=[[0]*(k+1) for _ in range(n+1)]
 
