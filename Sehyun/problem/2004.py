@@ -9,4 +9,4 @@ def count(n,k):
 
 ans=min(count(n,2)-count(n-m,2)-count(m,2),count(n,5)-count(n-m,5)-count(m,5))
 
-print(ans)
+print(ans*1)
