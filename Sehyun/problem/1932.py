@@ -19,12 +19,6 @@ for i in range(2,n):
     for j in range(i-1,0,-1):
         dp[i][j]=max(dp[i-1][j-1],dp[i-1][j])+lst[i][j]
 
-answer=[]
-
-for i in range(n):
-    answer.append(dp[n-1][i])
-
-print(max(answer))
-
+print(max(dp[n-1]))
 
 
