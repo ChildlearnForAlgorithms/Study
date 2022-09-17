@@ -1,11 +1,11 @@
 n=int(input())
 
-stairs=[0]*(301)
+stairs=[0]*(300)
 for i in range(n):
     a=int(input())
     stairs[i]=a
 
-dp=[0]*(301)
+dp=[0]*(300)
 
 dp[0]=stairs[0]
 dp[1]=stairs[0]+stairs[1]
