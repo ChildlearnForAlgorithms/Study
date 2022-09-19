@@ -28,7 +28,7 @@ def compute_e_ver2(n):
 
 # code for O(n)-time version
 
-n = random.randint(100, 500000)  # 실험할 때는 n=int(input())으로 입력 받아 실험했음
+n = int(input())  # 실험할 때는 n=int(input())으로 입력 받아 실험했음
 
 before1 = time.process_time()
 compute_e_ver1(n)
