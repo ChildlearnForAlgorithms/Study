@@ -2,19 +2,22 @@ import sys,heapq
 
 A=list(map(int,sys.stdin.readline().split()))
 n=len(A)
-heap=[]
-m=[-sys.maxsize-1]*n
-m[0]=A[0]
+def check(A,k):
+    small,big=[],[]
+    result=[]
+    for i in A:
+        if not small or -small[0]>=i:
+            heapq.heappush(small,-i)
+        else:
+            heapq.heappush(big,i)
 
-for i in range(1,n):
-    for j in range(0,i+1):
-        heapq.heappush(heap,A[j])
-    k=i//3+1
-    for l in range(k-1):
-        heapq.heappop(heap)
-    a=heapq.heappop(heap)
-    m[i]=a
-    heap=[]
+        if len(small)>k:
+            heapq.heappush(big,-heapq.heappop(small))
+        elif len(small)<k and big:
+            heapq.heappush(small,-heapq.heappop(big))
 
-print(sum(m))
+        result.append(-small[0] if len(small)>=k else -1)
 
+    return result
+
+print(sum)
