@@ -9,13 +9,12 @@ min_heap = []  # min-heap을 생성해줌.
 
 for idx, val in enumerate(A,start=1):  # 파이썬의 enumerate() 함수를 이용해 인덱스와 원소를 동시에 접근하면서 루프를 돌림. 이때 가장 작은 원소를 1번째로 작다고 정의하기로 했으니까 시작 인덱스를 1로 변경.
     if min_heap and (idx != 1 and idx % 3 == 1):  # min-heap이 비어있지 않고 인덱스가 1이 아니고(시작 원소니까) 3으로 나눈 나머지가 1일 때
-        val2 = heapq.heappop(
-            min_heap)  # heapq.heappush(max_heap,(-heapq.heappop(min_heap),heapq.heappop(min_heap))으로 해주면 최대 힙에 push 할 때 우선 순위에 따라 순서가 바뀌므로 먼저 따로 변수를 생성하여 최소 힙의 원소를 pop 해줌.
+        val2 = heapq.heappop(min_heap)  # heapq.heappush(max_heap,(-heapq.heappop(min_heap),heapq.heappop(min_heap))으로 해주면 최대 힙에 push 할 때 우선 순위에 따라 순서가 바뀌므로 먼저 따로 변수를 생성하여 최소 힙의 원소를 pop 해줌.
         heapq.heappush(max_heap, (-val2, val2))
 
-    heapq.heappush(max_heap, (-val,
-                              val))  # heapq 모듈은 최소 힙을 기능만으로 동작하기 때문에 최대 힙으로 활용하려면 힙에 튜플을 원소로 추가하거나 삭제하면, 튜플 내에서 맨 앞에 있는 값을 기준으로 최소 힙이 구성되는 원리를 이용함. 따라서, 최대 힙을 만들려면 각 값에 대한 우선 순위를 구한 후, (우선 순위, 값) 구조의 튜플을 힙에 추가해줌.
-    heapq.heappush(min_heap, heapq.heappop(max_heap)[1])  # 힙에서 값을 읽어올 때는 우선 순위에는 관심이 없으므로 각 튜플에서 인덱스 1에 있는 값을 취함.
+    heapq.heappush(max_heap, (-val,val))  # heapq 모듈은 최소 힙을 기능만으로 동작하기 때문에 최대 힙으로 활용하려면 힙에 튜플을 원소로 추가하거나 삭제하면, 튜플 내에서 맨 앞에 있는 값을 기준으로 최소 힙이 구성되는 원리를 이용함. 따라서, 최대 힙을 만들려면 각 값에 대한 우선 순위를 구한 후, (우선 순위, 값) 구조의 튜플을 힙에 추가해줌.
+    val3=heapq.heappop(max_heap)[1] # 힙에서 값을 읽어올 때는 우선 순위에는 관심이 없으므로 각 튜플에서 인덱스 1에 있는 값을 취함.
+    heapq.heappush(min_heap, val3)  # 최대 힙에서 pop 했던 값을 최소 힙에 넣어줌.
     ans += min_heap[0]  # min-heap의 첫 번째 원소를 ans 변수에 저장해줌.
 
 print(ans)  # 답을 출력.
