@@ -31,6 +31,7 @@ for i in range(n):
     if bool==False:
         continue
     elif bool==True:
-        print((i,m))
+        print((i, m))
         break
-
+if bool==False:
+    print((-1, -1))
