@@ -18,4 +18,4 @@ def solve(L, S):
 
 L, S = [int(x) for x in input().split()]
 
-print(solve(L, S) % 2147483647+(19-S))
+print(solve(L, S) % 2147483647)
