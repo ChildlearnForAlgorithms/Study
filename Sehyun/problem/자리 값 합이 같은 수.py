@@ -2,7 +2,7 @@ def solve(L, S):
     dp = [[0] * (1001) for _ in range(1001)]
     for j in range(1,10):
         dp[1][j]=1
-    for i in range(1,10):
+    for i in range(1,1001):
         dp[i][1]=1
     for i in range(2, 1001):
         for j in range(2, 10):
@@ -19,3 +19,4 @@ def solve(L, S):
 L, S = [int(x) for x in input().split()]
 
 print(solve(L, S) % 2147483647)
+
