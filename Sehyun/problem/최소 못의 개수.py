@@ -2,18 +2,18 @@ n = int(input())
 lst = list()
 
 for _ in range(n):
-    a, b = map(int, input().split()) # 왼쪽
+    a, b = map(int, input().split())
     lst.append([a, b])
 
-lst.sort(key=lambda x: x[1])
+lst.sort(key=lambda x: x[1])  # 람다를 이용하여 오른쪽 끝 값을 기준으로 정렬
 
 pos = lst[0][1]
 cnt = 1
 
 for i in range(n):
-    if lst[i][0] > pos:
-        pos = lst[i][1]
-        cnt += 1
+    if lst[i][0] > pos:  # 막대의 왼쪽 끝 값이 pos보다 오른쪽에 있는 경우
+        pos = lst[i][1]  # pos 이동해줌
+        cnt += 1  # 개수 하나 늘려줌
 
 print(cnt)
 
