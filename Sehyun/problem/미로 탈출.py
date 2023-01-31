@@ -24,6 +24,7 @@ def find_way_from_maze(r, c):
 
 
 
+
 trace = '\u00B7'
 n = int(input())
 sx, sy, ex, ey = (int(x) for x in input().split())
