@@ -1,33 +1,34 @@
 n=int(input())
-x,y=0,0
-dx,dy=[1,0,-1,0],[0,-1,0,1]
+
+dx,dy=[-1,0,0,1],[0,-1,1,0]
+
 mapper={
-    'E':0,
+    'W':0,
     'S':1,
-    'W':2,
-    'N':3
+    'N':2,
+    'E':3
 }
+
+x,y=0,0
+
+flag=False
+
 cnt=0
-ans=-1
-def move(dir_num,distance):
-    global x,y
-    global ans,cnt
-    for _ in range(distance):
-        x,y=x+dx[dir_num],y+dy[dir_num]
-        cnt+=1
+
+for i in range(n):
+    a,b=input().split()
+    b=int(b)
+    for j in range(b):
+        x,y=x+dx[mapper[a]],y+dy[mapper[a]]
         if x==0 and y==0:
-            ans=cnt
-            return True
-    return False
-
-for _ in range(n):
-    direction, distance = input().split()
-    distance = int(distance)
-    dir_num = mapper[direction]
-    done=move(dir_num,distance)
-    if done:
+            flag=True
+            cnt+=1
+            print(cnt)
+            break
+        else:
+            cnt+=1
+    if flag==True:
         break
-print(ans)
 
-
-
+if flag==False:
+    print(-1)

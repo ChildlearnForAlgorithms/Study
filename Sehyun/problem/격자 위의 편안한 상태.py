@@ -1,24 +1,21 @@
 n,m=map(int,input().split())
-grid=[[0 for _ in range(n+1)] for _ in range(n+1)]
+
 dxs,dys=[1,-1,0,0],[0,0,1,-1]
+grid=[[0]*n for _ in range(n)]
 
 def in_range(x,y):
-    return 1<=x and x<n+1 and 1<=y and y<n+1
+    return 0<=x and x<n and 0<=y and y<n
 
-
-for _ in range(m):
-    cnt=0
+for i in range(m):
     x,y=map(int,input().split())
+    x,y=x-1,y-1
     grid[x][y]=1
-    for i in range(4):
-        nx,ny=0,0
-        nx,ny=x+dxs[i],y+dys[i]
-        if in_range(nx,ny):
-            if grid[nx][ny]==1:
-                cnt+=1
+    cnt=0
+    for dx,dy in zip(dxs,dys):
+        nx,ny=x+dx,y+dy
+        if in_range(nx,ny) and grid[nx][ny]==1:
+            cnt+=1
     if cnt==3:
         print(1)
     else:
         print(0)
-
-
