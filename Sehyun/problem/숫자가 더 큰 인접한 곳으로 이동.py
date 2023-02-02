@@ -1,31 +1,31 @@
-n,x,y=map(int,input().split())
-x,y=x-1,y-1
-grid=[
-    list(map(int,input().split()))
+n, r, c = map(int, input().split())
+x, y = r - 1, c - 1
+grid = [
+    list(map(int, input().split()))
     for _ in range(n)
 ]
-dxs,dys=[-1,1,0,0],[0,0,-1,1]
+
+dxs, dyx = [-1, 1, 0, 0], [0, 0, -1, 1]
+
+max_num = grid[x][y]
+curr_x, curr_y = x, y
+num_lst = []
+num_lst.append(max_num)
 
 def in_range(x,y):
     return 0<=x and x<n and 0<=y and y<n
 
-def can_move(x,y,temp):
-    return in_range(x,y) and grid[x][y]>temp
-temp_lst = [grid[x][y]]
-def move():
-    global x,y
-    global dx,dy
-    for dx,dy in zip(dxs,dys):
-        nx,ny=x+dx,y+dy
-        if can_move(nx,ny,grid[x][y]):
-            x,y=nx,ny
-            return True
-    return False
-
 while True:
-    simulate=move()
-    if not simulate:
+    flag = False
+    for dx, dy in zip(dxs, dyx):
+        nx, ny = curr_x + dx, curr_y + dy
+        if in_range(nx,ny) and max_num < grid[nx][ny]:
+            max_num = grid[nx][ny]
+            curr_x, curr_y = nx, ny
+            num_lst.append(max_num)
+            flag = True
+            break
+    if flag == False:
         break
-    temp_lst.append(grid[x][y])
-for num in temp_lst:
-    print(num,end=' ')
+for elem in num_lst:
+    print(elem, end=" ")
