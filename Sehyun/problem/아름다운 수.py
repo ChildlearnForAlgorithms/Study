@@ -1,28 +1,31 @@
 n=int(input())
-answer=[]
+
+lst=[]
+
 cnt=0
-def selection(num):
+def choose(curr_num):
     global cnt
-    if num==n:
-        if beautiful_num(answer):
+    if curr_num==n+1:
+        if beautiful_num(lst):
             cnt+=1
         return
+
     for i in range(1,5):
-        answer.append(i)
-        selection(num+1)
-        answer.pop()
+        lst.append(i)
+        choose(curr_num+1)
+        lst.pop()
 
 
-def beautiful_num(answer):
+def beautiful_num(lst):
     i=0
     while i<n:
-        if i+answer[i]-1>=n:
+        if i+lst[i]>n:
             return False
-        for j in range(i,i+answer[i]):
-            if answer[j]!=answer[i]:
-                return
-        i+=answer[i]
+        for j in range(i,i+lst[i]):
+            if lst[i]!=lst[j]:
+                return False
+        i+=lst[i]
     return True
 
-selection(0)
+choose(1)
 print(cnt)
