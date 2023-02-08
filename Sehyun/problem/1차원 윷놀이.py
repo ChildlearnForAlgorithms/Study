@@ -1,31 +1,28 @@
 n,m,k=map(int,input().split())
-lst=list(map(int,input().split()))
-order=[]
-count=0
-last=[]
+dist=list(map(int,input().split()))
+result=[1]*k
+ans=0
+def calc():
+    ans=0
+    for i in range(k):
+        ans+=(result[i]>=m)
+    return ans
+
 def select(cnt):
-    global count
+    global ans
+
+    ans=max(ans,calc())
+
     if cnt==n:
-        game()
-        last.append(count)
         return
-    for i in range(1,k+1):
-        order.append(i)
-        select(cnt+1)
-        order.pop()
-    return
 
-
-def game():
-    global count
-    result = [1] * (k + 1)
-    count=0
-    for i in range(n):
-        result[order[i]]+=lst[i]
-    for i in range(1,k+1):
+    for i in range(k):
         if result[i]>=m:
-            count+=1
-    return count
+            continue
+
+        result[i]+=dist[cnt]
+        select(cnt+1)
+        result[i]-=dist[cnt]
 
 select(0)
-print(max(last))
+print(ans)

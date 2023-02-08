@@ -1,24 +1,23 @@
 n=int(input())
-answer=[]
+lst=[]
 visited=[False]*(n+1)
 
-def print_answer():
-    for element in answer:
-        print(element,end=' ')
+def print_all():
+    for elem in lst:
+        print(elem,end=" ")
     print()
-    return
 
-def choose(curr_num):
-    if curr_num==1:
-        print_answer()
+def select(curr_num):
+    if curr_num==n:
+        print_all()
         return
     for i in range(n,0,-1):
         if visited[i]:
             continue
+        lst.append(i)
         visited[i]=True
-        answer.append(i)
-        choose(curr_num-1)
-        answer.pop()
+        select(curr_num+1)
+        lst.pop()
         visited[i]=False
+select(0)
 
-choose(n+1)
