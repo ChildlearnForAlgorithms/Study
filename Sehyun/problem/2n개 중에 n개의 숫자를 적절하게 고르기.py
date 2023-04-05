@@ -1,22 +1,21 @@
-n=int(input())
+import sys
 
-lst=list(map(int,input().split()))
-select_lst=[]
-sub_lst=[]
+n=int(sys.stdin.readline())
 
-if n%2==0:
-    while len(lst)>n:
-        select_lst.append(max(lst))
-        lst.remove(max(lst))
-        select_lst.append(min(lst))
-        lst.remove(min(lst))
-    print((abs(sum(sub_lst)-sum(select_lst))))
+lst=list(map(int,sys.stdin.readline().split()))
 
-if n%2==1:
-    while len(lst)>n+1:
-        select_lst.append(max(lst))
-        lst.remove(max(lst))
-        select_lst.append(min(lst))
-        lst.remove(min(lst))
-    if sum(lst)>sum(select_lst):
+ans=sys.maxsize
 
+def find_min(idx,cnt,sub):
+    global ans
+
+    if idx==2*n:
+        if cnt==n:
+            ans=min(ans,abs(sub))
+        return
+
+    find_min(idx+1,cnt+1,sub+lst[idx])
+    find_min(idx+1,cnt,sub-lst[idx])
+
+find_min(0,0,0)
+print(ans)
